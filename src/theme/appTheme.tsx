@@ -45,5 +45,18 @@ export const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
         textAlign: 'center'
+    },
+    iconPassword: {
+        position: 'absolute',
+        right: 20,
+        zIndex: 1,
+        marginTop:12
+    },
+    textRedirection:{
+        marginTop:30,
+        fontSize:16,
+        color:PRIMARY_COLOR,
+        fontWeight:'bold',
+        textAlign:'center'
     }
 });
