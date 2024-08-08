@@ -6,6 +6,7 @@ import { BodyComponent } from '../components/BodyComponent';
 import { styles } from '../theme/appTheme';
 import { InputComponent } from '../components/InputComponent';
 import { ButtonComponent } from '../components/ButtonComponent';
+import { useNavigation } from '@react-navigation/native';
 
 //interface - objeto
 interface FormLogin {
@@ -36,6 +37,9 @@ export const LoginScreen = () => {
 
     //hook useState: permitir que la contraseña sea visible o no
     const [hiddenPassword, setHiddenPassword] = useState<boolean>(true);
+
+    //hook useNavigation: permitir navegar de una pantalla a otra
+    useNavigation();
 
     //función que permita actualizar el estado del formulario
     const handleSetValues = (name: string, value: string) => {
