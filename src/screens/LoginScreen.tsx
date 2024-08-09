@@ -6,7 +6,7 @@ import { BodyComponent } from '../components/BodyComponent';
 import { styles } from '../theme/appTheme';
 import { InputComponent } from '../components/InputComponent';
 import { ButtonComponent } from '../components/ButtonComponent';
-import { useNavigation } from '@react-navigation/native';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 
 //interface - objeto
 interface FormLogin {
@@ -39,7 +39,7 @@ export const LoginScreen = () => {
     const [hiddenPassword, setHiddenPassword] = useState<boolean>(true);
 
     //hook useNavigation: permitir navegar de una pantalla a otra
-    useNavigation();
+    const navigation = useNavigation();
 
     //función que permita actualizar el estado del formulario
     const handleSetValues = (name: string, value: string) => {
@@ -106,8 +106,11 @@ export const LoginScreen = () => {
                         actionIcon={() => setHiddenPassword(!hiddenPassword)} />
                 </View>
                 <ButtonComponent textButton='Iniciar' actionButton={handleSignIn} />
-                <TouchableOpacity>
-                    <Text style={styles.textRedirection}>No tienes cuenta? Regístrate ahora</Text>
+                <TouchableOpacity
+                    onPress={() => navigation.dispatch(CommonActions.navigate({name:'Register'}))}>
+                    <Text style={styles.textRedirection}>
+                        No tienes cuenta? Regístrate ahora
+                    </Text>
                 </TouchableOpacity>
             </BodyComponent>
         </View>
