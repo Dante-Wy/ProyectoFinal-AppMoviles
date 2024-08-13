@@ -7,6 +7,12 @@ import { styles } from '../theme/appTheme';
 import { InputComponent } from '../components/InputComponent';
 import { ButtonComponent } from '../components/ButtonComponent';
 import { CommonActions, useNavigation } from '@react-navigation/native';
+import { User } from '../navigator/StackNavigator';
+
+//interface - props
+interface Props {
+    users: User[];  //arreglo con la lista de usuarios
+}
 
 //interface - objeto
 interface FormLogin {
@@ -14,21 +20,7 @@ interface FormLogin {
     password: string;
 }
 
-//interface - vector objetos
-interface User {
-    id: number;
-    email: string;
-    password: string;
-}
-
-export const LoginScreen = () => {
-
-    //arreglo de usuarios: permitir inicio de sesión
-    const users: User[] = [
-        { id: 1, email: 'vflores@gmail.com', password: '123456' },
-        { id: 2, email: 'caguas@gmail.com', password: '1234567' }
-    ];
-
+export const LoginScreen = ({ users }: Props) => {
     //hook useState: manipular el estado del formulario
     const [formLogin, setFormLogin] = useState<FormLogin>({
         email: '',
@@ -68,7 +60,9 @@ export const LoginScreen = () => {
             return;
         }
 
-        console.log(formLogin);
+        //Si uso un usuario registrado, navego al HomeScreen
+        navigation.dispatch(CommonActions.navigate({ name: 'Home' }))
+        //console.log(formLogin);
     }
 
     //función verificar si existe el correo y contraseña
@@ -107,7 +101,7 @@ export const LoginScreen = () => {
                 </View>
                 <ButtonComponent textButton='Iniciar' actionButton={handleSignIn} />
                 <TouchableOpacity
-                    onPress={() => navigation.dispatch(CommonActions.navigate({name:'Register'}))}>
+                    onPress={() => navigation.dispatch(CommonActions.navigate({ name: 'Register' }))}>
                     <Text style={styles.textRedirection}>
                         No tienes cuenta? Regístrate ahora
                     </Text>
