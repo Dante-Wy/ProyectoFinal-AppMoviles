@@ -66,7 +66,7 @@ export const styles = StyleSheet.create({
         padding: 10,
         borderStyle: 'solid',
         borderColor: '#ccc',
-        borderWidth: 1,
+        borderWidth: 2,
         borderRadius: 10,
         marginBottom: 15
         /*shadowColor: "#000",
@@ -87,8 +87,84 @@ export const styles = StyleSheet.create({
         width: 75,
         height: 75
     },
-    iconCard:{
-        flex:1,
-        alignItems:'flex-end'
+    iconCard: {
+        flex: 1,
+        alignItems: 'flex-end'
+    },
+    contentPrincipal: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+    },
+    contentModal: {
+        backgroundColor: SECUNDARY_COLOR,
+        padding: 25,
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    headerModal: {
+        flexDirection: 'row',
+        borderBottomColor: '#ccc',
+        borderBottomWidth: 2,
+        padding: 10,
+        alignItems: 'center'
+    },
+    titleModal: {
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    imageModal: {
+        width: 200,
+        height: 200
+    },
+    contentQuantity: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    buttonQuantity: {
+        width: 50,
+        height: 50,
+        backgroundColor: PRIMARY_COLOR,
+        borderRadius: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 17
+    },
+    textButtonQuantity: {
+        color: SECUNDARY_COLOR,
+        fontSize: 20,
+        fontWeight: 'bold'
+    },
+    textQuantity: {
+        fontSize: 20,
+        color: '#000',
+        textAlign: 'center'
+    },
+    buttonAddCard: {
+        backgroundColor: PRIMARY_COLOR,
+        alignItems: 'center',
+        marginTop: 15,
+        paddingVertical: 10,
+        borderRadius: 5
+    },
+    textButtonAddCard: {
+        color: SECUNDARY_COLOR,
+        fontWeight: 'bold'
+    },
+    messageStock: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#b52828',
+        textAlign: 'center'
     }
+
 });
