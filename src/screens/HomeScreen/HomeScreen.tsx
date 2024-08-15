@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { FlatList, StatusBar, Text, View } from 'react-native';
-import { PRIMARY_COLOR } from '../../commons/constantsColor';
+import { PRIMARY_COLOR, SECUNDARY_COLOR } from '../../commons/constantsColor';
 import { TitleComponent } from '../../components/TitleComponent';
 import { BodyComponent } from '../../components/BodyComponent';
 import { CardProduct } from './components/CardProduct';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { styles } from '../../theme/appTheme';
+import { ModalCar } from './components/ModalCar';
 
 //interface - arreglo productos
 export interface Product {
@@ -15,7 +18,7 @@ export interface Product {
 }
 
 //interface - arreglo carrito de compras
-interface Car {
+export interface Car {
     id: number;
     name: string;
     price: number;
@@ -40,6 +43,9 @@ export const HomeScreen = () => {
 
     //hook useState: manipular el arreglo de carrito de compras
     const [car, setCar] = useState<Car[]>([]);
+
+    //hook useState: manipular la visibilidad del modal
+    const [showModal, setShowModal] = useState<boolean>(false);
 
     //función para actualizar la información del arreglo producto
     const changeStockProduct = (idProduct: number, quantity: number) => {
@@ -73,19 +79,36 @@ export const HomeScreen = () => {
 
         //Agregar en el arreglo del carrito de compras
         setCar([...car, newProductCar]);
-        console.log(car);
+        //console.log(car);
     }
 
     return (
         <View>
             <StatusBar backgroundColor={PRIMARY_COLOR} />
-            <TitleComponent title='Productos' />
+            <View style={styles.contentHeaderHome}>
+                <TitleComponent title='Productos' />
+                <View style={{
+                    ...styles.iconCard,
+                    paddingHorizontal: 33
+                }}>
+                    <Text style={styles.textIconCar}>{car.length}</Text>
+                    <Icon
+                        name='shopping-cart'
+                        size={33}
+                        color={SECUNDARY_COLOR}
+                        onPress={() => setShowModal(!showModal)} />
+                </View>
+            </View>
             <BodyComponent>
                 <FlatList
                     data={productsState}
                     renderItem={({ item }) => <CardProduct product={item} changeStockProduct={changeStockProduct} />}
                     keyExtractor={item => item.id.toString()} />
             </BodyComponent>
+            <ModalCar
+                isVisible={showModal}
+                car={car}
+                setShowModal={() => setShowModal(!showModal)} />
         </View>
     )
 }

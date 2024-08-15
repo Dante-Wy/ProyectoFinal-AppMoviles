@@ -165,6 +165,33 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#b52828',
         textAlign: 'center'
+    },
+    contentHeaderHome: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    textIconCar: {
+        backgroundColor: SECUNDARY_COLOR,
+        borderRadius: 100,
+        paddingHorizontal: 5,
+        fontSize: 14,
+        fontWeight: 'bold'
+    },
+    headerTable: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    headerTableInf: {
+        flexDirection: 'row',
+    },
+    textHeaderInf: {
+        fontWeight: 'bold',
+        color: '#000'
+    },
+    textTotalPay: {
+        marginTop: 15,
+        fontSize: 15,
+        fontWeight: 'bold'
     }
 
 });
