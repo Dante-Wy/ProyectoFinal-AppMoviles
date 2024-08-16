@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { FlatList, StatusBar, Text, View } from 'react-native';
-import { PRIMARY_COLOR, SECUNDARY_COLOR } from '../../commons/constantsColor';
-import { TitleComponent } from '../../components/TitleComponent';
-import { BodyComponent } from '../../components/BodyComponent';
-import { CardProduct } from './components/CardProduct';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { PRIMARY_COLOR, SECUNDARY_COLOR } from '../../commons/constantsColor';
+import { BodyComponent } from '../../components/BodyComponent';
+import { TitleComponent } from '../../components/TitleComponent';
 import { styles } from '../../theme/appTheme';
+import { CardProduct } from './components/CardProduct';
 import { ModalCar } from './components/ModalCar';
 
-//interface - arreglo productos
 export interface Product {
     id: number;
     name: string;
@@ -17,7 +16,6 @@ export interface Product {
     pathImage: string;
 }
 
-//interface - arreglo carrito de compras
 export interface Car {
     id: number;
     name: string;
@@ -26,50 +24,39 @@ export interface Car {
 }
 
 export const HomeScreen = () => {
-    //arreglo con la lista de productos
     const products: Product[] = [
-        { id: 1, name: 'Funda de arroz', price: 1.80, stock: 5, pathImage: 'https://www.megaprimavera.com/wp-content/uploads/arroz-blanco-gustadina-2-kg.png' },
-        { id: 2, name: 'Funda de azucar', price: 1.30, stock: 7, pathImage: 'https://tienda.propieta.ec/wp-content/uploads/2021/03/azucar-blanca.jpg' },
-        { id: 3, name: 'Funda de papas', price: 2.00, stock: 0, pathImage: 'https://www.supermercadosantamaria.com/documents/10180/10504/65700_G.jpg' },
-        { id: 4, name: 'Funda de fideos', price: 0.80, stock: 4, pathImage: 'https://www.supermercadosantamaria.com/documents/10180/10504/133101593_M.jpg' },
-        { id: 5, name: 'Funda de sal', price: 0.60, stock: 8, pathImage: 'https://www.supermercadosantamaria.com/documents/10180/10504/87990_M.jpg' },
-        { id: 6, name: 'Funda de sal', price: 0.60, stock: 8, pathImage: 'https://www.supermercadosantamaria.com/documents/10180/10504/87990_M.jpg' },
-        { id: 7, name: 'Funda de sal', price: 0.60, stock: 8, pathImage: 'https://www.supermercadosantamaria.com/documents/10180/10504/87990_M.jpg' },
-        { id: 8, name: 'Funda de sal', price: 0.60, stock: 8, pathImage: 'https://www.supermercadosantamaria.com/documents/10180/10504/87990_M.jpg' },
+        { id: 1, name: 'Funda de arroz', price: 1.80, stock: 5, pathImage: require('../../../assets/Bryce Canyon.jpeg') },
+        { id: 2, name: 'Funda de azucar', price: 1.30, stock: 7, pathImage: require('../../../assets/El Chupacabras.jpeg') },
+        { id: 3, name: 'Funda de papas', price: 2.00, stock: 0, pathImage: require('../../../assets/El Experimento Filadelfia.jpeg') },
+        { id: 4, name: 'Funda de fideos', price: 0.80, stock: 4, pathImage: require('../../../assets/El Lago Vostok.jpeg') },
+        { id: 5, name: 'Funda de sal', price: 0.60, stock: 8, pathImage: require('../../../assets/El Misterio de las Marismas de Hockomock.jpeg') },
+        { id: 6, name: 'Funda de sal', price: 0.60, stock: 8, pathImage: require('../../../assets/El Monstruo del Lago Ness.jpeg') },
+        { id: 7, name: 'Funda de sal', price: 0.60, stock: 8, pathImage: require('../../../assets/El Sonido de la Tierra.jpeg') },
+        { id: 8, name: 'Funda de sal', price: 0.60, stock: 8, pathImage: require('../../../assets/El Triángulo de Bridgewater.jpeg') },
     ];
 
-    //hook useState: manipular el arreglo de productos
     const [productsState, setProductsState] = useState(products);
 
-    //hook useState: manipular el arreglo de carrito de compras
     const [car, setCar] = useState<Car[]>([]);
 
-    //hook useState: manipular la visibilidad del modal
     const [showModal, setShowModal] = useState<boolean>(false);
 
-    //función para actualizar la información del arreglo producto
     const changeStockProduct = (idProduct: number, quantity: number) => {
-        //Nuevo arreglo con el stock actualizado
         const updateStock = productsState.map(product => product.id === idProduct
             ? { ...product, stock: product.stock - quantity }
             : product);
-        //Actualizar productState
         setProductsState(updateStock);
 
-        //llamar función agregar carrito
         addProduct(idProduct, quantity);
     }
 
-    //función agregar los productos al carrito
     const addProduct = (idProduct: number, quantity: number) => {
         const product = productsState.find(product => product.id === idProduct);
 
-        //Controlar si el producto no ha sido encontrado
         if (!product) {
             return;
         }
 
-        //Si el producto fue encontrado - genero objeto car|producto
         const newProductCar: Car = {
             id: product.id,
             name: product.name,
@@ -77,9 +64,7 @@ export const HomeScreen = () => {
             totalQuantity: quantity
         }
 
-        //Agregar en el arreglo del carrito de compras
         setCar([...car, newProductCar]);
-        //console.log(car);
     }
 
     return (

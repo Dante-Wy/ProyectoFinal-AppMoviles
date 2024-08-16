@@ -1,36 +1,28 @@
 import React, { useState } from 'react';
 import { Image, Modal, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
-import { styles } from '../../../theme/appTheme';
-import { Product } from '../HomeScreen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { PRIMARY_COLOR } from '../../../commons/constantsColor';
+import { styles } from '../../../theme/appTheme';
+import { Product } from '../HomeScreen';
 
-//interface - props
 interface Props {
   product: Product;
   isVisible: boolean;
-  setShowModal: () => void; //función para visibilidad o no del modal
+  setShowModal: () => void;
   changeStockProduct: (idProduct: number, quantity: number) => void;
 }
 
 export const ModalProduct = ({ isVisible, setShowModal, product, changeStockProduct }: Props) => {
-  //hook useWindowDimensions: tamaño de la pantalla
   const { width } = useWindowDimensions();
-  //hook useState: manipular el estado de la cantidad
   const [quantity, setQuantity] = useState<number>(1);
 
-  //función actualizar el valor de la cantidad - contador
   const handleChangeQuantity = (value: number) => {
     setQuantity(quantity + value)
   }
 
-  //función agregar productos carrito
   const handleAddProduct = () => {
-    //Actualizar stock
     changeStockProduct(product.id, quantity);
-    //Reiniciar quantity
     setQuantity(1);
-    //Cerrar modal
     setShowModal();
   }
 

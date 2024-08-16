@@ -5,20 +5,17 @@ import { styles } from '../../../theme/appTheme';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { PRIMARY_COLOR } from '../../../commons/constantsColor';
 
-//interface - props
 interface Props {
     isVisible: boolean;
-    setShowModal: () => void; //función para cerrar el modal
-    car: Car[];  //arreglo con la lista de productos en el carrito
+    setShowModal: () => void;
+    car: Car[];
 }
 
 export const ModalCar = ({ isVisible, setShowModal, car }: Props) => {
 
     const { width } = useWindowDimensions();
 
-    //función para calcular el total a pagar
     const totalPay = (): number => {
-        //acumulador
         let total: number = 0;
         car.forEach(product => {
             total += product.price * product.totalQuantity
@@ -26,9 +23,7 @@ export const ModalCar = ({ isVisible, setShowModal, car }: Props) => {
         return total;
     }
 
-    //función enviar la compra
     const handleSendInfo = () => {
-        //Cerrar el modal
         setShowModal();
     }
 

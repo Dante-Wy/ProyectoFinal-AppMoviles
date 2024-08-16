@@ -1,21 +1,19 @@
+import { CommonActions, useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { Alert, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import { PRIMARY_COLOR } from '../commons/constantsColor';
-import { TitleComponent } from '../components/TitleComponent';
 import { BodyComponent } from '../components/BodyComponent';
-import { styles } from '../theme/appTheme';
-import { InputComponent } from '../components/InputComponent';
 import { ButtonComponent } from '../components/ButtonComponent';
-import { CommonActions, useNavigation } from '@react-navigation/native';
+import { InputComponent } from '../components/InputComponent';
+import { TitleComponent } from '../components/TitleComponent';
 import { User } from '../navigator/StackNavigator';
+import { styles } from '../theme/appTheme';
 
-//interface - props
 interface Props {
-  users: User[];  //arreglo con la lista de usuarios
-  handleAddUser: (user: User) => void; //función para añadir nuevos elementos al arreglo
+  users: User[];
+  handleAddUser: (user: User) => void;
 }
 
-//interface - formulario Registro
 interface FormRegister {
   email: string;
   password: string;
@@ -23,28 +21,21 @@ interface FormRegister {
 
 export const RegisterScreen = ({ users, handleAddUser }: Props) => {
 
-  //hook useState: Manipular el estado del formulario
   const [formRegister, setFormRegister] = useState<FormRegister>({
     email: '',
     password: ''
   });
 
-  //hook useState: permitir que la contraseña sea visible o no
   const [hiddenPassword, setHiddenPassword] = useState<boolean>(true);
 
-  //hook useNavigation: permitir navegar de una pantalla a otra
   const navigation = useNavigation();
 
-  //función que actualice el estado del formulario
   const handleSetValues = (name: string, value: string) => {
     setFormRegister({ ...formRegister, [name]: value });
   }
 
-  //función que permita registrar usuario
   const handleSignUp = () => {
-    //Validar que los campos se encuentren llenos
     if (!formRegister.email || !formRegister.password) {
-      //Mensaje de aviso
       Alert.alert(
         "Error",
         "Por favor, completar todos los campos!"
@@ -52,7 +43,6 @@ export const RegisterScreen = ({ users, handleAddUser }: Props) => {
       return;
     }
 
-    //Validar que no se registre un usuario ya existente
     if (verifyUser() != null) {
       Alert.alert(
         "Error",
@@ -61,31 +51,24 @@ export const RegisterScreen = ({ users, handleAddUser }: Props) => {
       return;
     }
 
-    //Generar la información del nuevo usuario
-    //Obtener en un arreglo los ids de los usuarios registrados
-    const getIdUsers = users.map(user => user.id);  //[1,2]
-    //Generando el id del nuevo usuario
+    const getIdUsers = users.map(user => user.id);
     const getNewId = Math.max(...getIdUsers) + 1;
-    //Crear el nuevo usuario - nuevo objeto de tipo User
     const newUser: User = {
       id: getNewId,
       email: formRegister.email,
       password: formRegister.password
     }
-    //Guardar el nuevo usuario en el arreglo
     handleAddUser(newUser);
     Alert.alert(
       "Felicitaciones",
       "Registro exitoso!"
     );
     navigation.goBack();
-    //console.log(formRegister);
   }
 
-  //función para verificar que el usuario está en la lista de usuarios - arreglo
   const verifyUser = (): User => {
     const existUser = users.filter(user => user.email === formRegister.email)[0];
-    return existUser; //User | null
+    return existUser;
   }
 
   return (
@@ -120,7 +103,7 @@ export const RegisterScreen = ({ users, handleAddUser }: Props) => {
         <TouchableOpacity
           onPress={() => navigation.dispatch(CommonActions.navigate({ name: 'Login' }))}>
           <Text style={styles.textRedirection}>
-            Ya tienes una cuenta? Iniciar sesión ahora
+            ¿Ya tienes una cuenta? ¡Inicia sesión ahora!
           </Text>
         </TouchableOpacity>
       </BodyComponent>

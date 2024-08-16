@@ -1,3 +1,3 @@
-export const PRIMARY_COLOR = '#026f48';
-export const SECUNDARY_COLOR = '#fff';
+export const PRIMARY_COLOR = '#4a235a';
+export const SECUNDARY_COLOR = '#5dade2';
 export const INPUT_COLOR = '#f1f4f5';

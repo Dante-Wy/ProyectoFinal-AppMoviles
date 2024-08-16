@@ -6,14 +6,12 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { PRIMARY_COLOR } from '../../../commons/constantsColor';
 import { ModalProduct } from './ModalProduct';
 
-//interface - Props
 interface Props {
     product: Product;
     changeStockProduct: (idProduct: number, quantity: number) => void;
 }
 
 export const CardProduct = ({ product, changeStockProduct }: Props) => {
-    //hook useState: manipular el estado del modal
     const [showModal, setShowModal] = useState<boolean>(false);
 
     return (

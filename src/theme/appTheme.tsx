@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
         gap: 10
     },
     button: {
-        backgroundColor: PRIMARY_COLOR,
+        backgroundColor: '#2e4053',
         paddingVertical: 15,
         borderRadius: 10,
         marginTop: 30
@@ -69,14 +69,6 @@ export const styles = StyleSheet.create({
         borderWidth: 2,
         borderRadius: 10,
         marginBottom: 15
-        /*shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowOpacity: 0.23,
-        shadowRadius: 2.60,
-        elevation: 2,*/
     },
     titleCard: {
         fontWeight: 'bold',

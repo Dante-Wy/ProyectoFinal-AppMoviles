@@ -1,17 +1,16 @@
 import React from 'react';
 import { TextInput, View } from 'react-native';
-import { styles } from '../theme/appTheme';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { PRIMARY_COLOR } from '../commons/constantsColor';
+import { styles } from '../theme/appTheme';
 
-//interface - props
 interface Props {
     placeholder: string;
-    handleSetValues: (name: string, value: string) => void;   //prop función
+    handleSetValues: (name: string, value: string) => void;
     name: string;
-    isPassword?: boolean;  //prop opcional
+    isPassword?: boolean;
     hasIcon?: boolean;
-    actionIcon?: () => void;  //prop función
+    actionIcon?: () => void;
 }
 
 export const InputComponent = ({ placeholder, handleSetValues, name, isPassword = false, hasIcon = false, actionIcon }: Props) => {
