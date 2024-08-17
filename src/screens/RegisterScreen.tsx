@@ -1,3 +1,4 @@
+import CheckBox from '@react-native-community/checkbox';
 import { CommonActions, useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { Alert, StatusBar, Text, TouchableOpacity, View } from 'react-native';
@@ -8,9 +9,6 @@ import { InputComponent } from '../components/InputComponent';
 import { TitleComponent } from '../components/TitleComponent';
 import { User } from '../navigator/StackNavigator';
 import { styles } from '../theme/appTheme';
-
-import CheckBox from '@react-native-community/checkbox';
-import RNPickerSelect from 'react-native-picker-select';
 
 interface Props {
   users: User[];
@@ -108,12 +106,6 @@ export const RegisterScreen = ({ users, handleAddUser }: Props) => {
             placeholder='Apellido'
             handleSetValues={handleSetValues}
             name='last name' />
-          <RNPickerSelect
-              onValueChange={(value) => ({ name: 'check', value })}
-              items={[
-                  { label: 'Masculino', value: 'Masculino' },
-                  { label: 'Femenino', value: 'Femenino' }, ]}
-              placeholder={{ label: 'Seleccione su género', value: null }}/>
           <InputComponent
             placeholder='Correo'
             handleSetValues={handleSetValues}

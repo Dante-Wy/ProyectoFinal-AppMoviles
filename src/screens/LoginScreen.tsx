@@ -64,11 +64,11 @@ export const LoginScreen = ({ users }: Props) => {
                 <View>
                     <Text
                         style={styles.titleBody}>
-                        Bienvenido de nuevo!
+                        ¡Bienvenido de nuevo!
                     </Text>
                     <Text
                         style={styles.descriptionBody}>
-                        Realiza tus compras de manera rápida y segura
+                        Realiza tus compras de manera rápida y segura de los mejores cuentos acerca de nuestro mundo.
                     </Text>
                 </View>
                 <View style={styles.contentInput}>
