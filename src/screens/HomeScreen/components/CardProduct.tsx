@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Image, Text, View } from 'react-native';
-import { Product } from '../HomeScreen';
-import { styles } from '../../../theme/appTheme';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { PRIMARY_COLOR } from '../../../commons/constantsColor';
+import { styles } from '../../../theme/appTheme';
+import { Product } from '../HomeScreen';
 import { ModalProduct } from './ModalProduct';
 
 interface Props {

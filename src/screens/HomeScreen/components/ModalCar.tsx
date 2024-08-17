@@ -1,9 +1,9 @@
 import React from 'react';
 import { FlatList, Modal, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
-import { Car } from '../HomeScreen';
-import { styles } from '../../../theme/appTheme';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { PRIMARY_COLOR } from '../../../commons/constantsColor';
+import { styles } from '../../../theme/appTheme';
+import { Car } from '../HomeScreen';
 
 interface Props {
     isVisible: boolean;
@@ -32,7 +32,7 @@ export const ModalCar = ({ isVisible, setShowModal, car }: Props) => {
             <View style={styles.contentPrincipal}>
                 <View style={{
                     ...styles.contentModal,
-                    width: width * 0.80
+                    width: width * 0.60
                 }}>
                     <View style={styles.headerModal}>
                         <Text style={styles.titleModal}>Mis Productos</Text>

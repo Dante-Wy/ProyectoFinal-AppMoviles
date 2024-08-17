@@ -9,6 +9,9 @@ import { TitleComponent } from '../components/TitleComponent';
 import { User } from '../navigator/StackNavigator';
 import { styles } from '../theme/appTheme';
 
+import CheckBox from '@react-native-community/checkbox';
+import RNPickerSelect from 'react-native-picker-select';
+
 interface Props {
   users: User[];
   handleAddUser: (user: User) => void;
@@ -17,13 +20,15 @@ interface Props {
 interface FormRegister {
   email: string;
   password: string;
+  confirmPassword: string;
 }
 
 export const RegisterScreen = ({ users, handleAddUser }: Props) => {
 
   const [formRegister, setFormRegister] = useState<FormRegister>({
     email: '',
-    password: ''
+    password: '',
+    confirmPassword: '' /*No implemente la logica. Quise poner contraseña 1 igual a contraseña 2 y no funciona asi. :(*/
   });
 
   const [hiddenPassword, setHiddenPassword] = useState<boolean>(true);
@@ -35,13 +40,21 @@ export const RegisterScreen = ({ users, handleAddUser }: Props) => {
   }
 
   const handleSignUp = () => {
-    if (!formRegister.email || !formRegister.password) {
+    if (!formRegister.email || !formRegister.password /* || !confirmPassword.confirmPassword*/ ) {
       Alert.alert(
         "Error",
-        "Por favor, completar todos los campos!"
+        "¡Por favor, completar todos los campos!"
       );
       return;
     }
+
+    /*if (password !== confirmPassword) {
+      Alert.alert(
+        "Error",
+        'Las contrase;as no coinciden!'
+      );
+      return;
+    }; El error dice que no encuentra el nombre, solo Dios sabra donde se pone el nombre*/
 
     if (verifyUser() != null) {
       Alert.alert(
@@ -79,14 +92,28 @@ export const RegisterScreen = ({ users, handleAddUser }: Props) => {
         <View>
           <Text
             style={styles.titleBody}>
-            Estás muy cerca!
+              StoryBook´s
           </Text>
           <Text
             style={styles.descriptionBody}>
-            Realiza tus compras de manera rápida y segura
+            Registrate y compra los mejores cuentos e historias acerca de nuestro mundo.
           </Text>
         </View>
         <View style={styles.contentInput}>
+          <InputComponent
+            placeholder='Nombre'
+            handleSetValues={handleSetValues}
+            name='name' />
+          <InputComponent
+            placeholder='Apellido'
+            handleSetValues={handleSetValues}
+            name='last name' />
+          <RNPickerSelect
+              onValueChange={(value) => ({ name: 'check', value })}
+              items={[
+                  { label: 'Masculino', value: 'Masculino' },
+                  { label: 'Femenino', value: 'Femenino' }, ]}
+              placeholder={{ label: 'Seleccione su género', value: null }}/>
           <InputComponent
             placeholder='Correo'
             handleSetValues={handleSetValues}
@@ -98,6 +125,15 @@ export const RegisterScreen = ({ users, handleAddUser }: Props) => {
             isPassword={hiddenPassword}
             hasIcon={true}
             actionIcon={() => setHiddenPassword(!hiddenPassword)} />
+          <InputComponent
+            placeholder='Confirmar Contraseña'
+            handleSetValues={handleSetValues}
+            name='confirmPassword'
+            isPassword={hiddenPassword}
+            hasIcon={true}
+            actionIcon={() => setHiddenPassword(!hiddenPassword)} />
+          <CheckBox
+              onValueChange={(newValue) => ({ name: 'acceptTerms', value: newValue })}/>
         </View>
         <ButtonComponent textButton='Registrar' actionButton={handleSignUp} />
         <TouchableOpacity

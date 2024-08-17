@@ -88,7 +88,7 @@ export const LoginScreen = ({ users }: Props) => {
                 <TouchableOpacity
                     onPress={() => navigation.dispatch(CommonActions.navigate({ name: 'Register' }))}>
                     <Text style={styles.textRedirection}>
-                        No tienes cuenta? Regístrate ahora
+                        ¿No tienes cuenta? ¡Regístrate ahora!
                     </Text>
                 </TouchableOpacity>
             </BodyComponent>

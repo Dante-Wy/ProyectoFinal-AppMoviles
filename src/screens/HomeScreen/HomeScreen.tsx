@@ -25,14 +25,14 @@ export interface Car {
 
 export const HomeScreen = () => {
     const products: Product[] = [
-        { id: 1, name: 'Funda de arroz', price: 1.80, stock: 5, pathImage: require('../../../assets/Bryce Canyon.jpeg') },
-        { id: 2, name: 'Funda de azucar', price: 1.30, stock: 7, pathImage: require('../../../assets/El Chupacabras.jpeg') },
-        { id: 3, name: 'Funda de papas', price: 2.00, stock: 0, pathImage: require('../../../assets/El Experimento Filadelfia.jpeg') },
-        { id: 4, name: 'Funda de fideos', price: 0.80, stock: 4, pathImage: require('../../../assets/El Lago Vostok.jpeg') },
-        { id: 5, name: 'Funda de sal', price: 0.60, stock: 8, pathImage: require('../../../assets/El Misterio de las Marismas de Hockomock.jpeg') },
-        { id: 6, name: 'Funda de sal', price: 0.60, stock: 8, pathImage: require('../../../assets/El Monstruo del Lago Ness.jpeg') },
-        { id: 7, name: 'Funda de sal', price: 0.60, stock: 8, pathImage: require('../../../assets/El Sonido de la Tierra.jpeg') },
-        { id: 8, name: 'Funda de sal', price: 0.60, stock: 8, pathImage: require('../../../assets/El Triángulo de Bridgewater.jpeg') },
+        { id: 1, name: 'Bryce Canyon', price: 23.99, stock: 99, pathImage: require('../../../assets/Bryce Canyon.jpeg') },
+        { id: 2, name: 'El Chupacabras', price: 4.99, stock: 99, pathImage: require('../../../assets/El Chupacabras.jpeg') },
+        { id: 3, name: 'El Experimento Filadelfia', price: 18.99, stock: 99, pathImage: require('../../../assets/El Experimento Filadelfia.jpeg') },
+        { id: 4, name: 'El Lago Vostok', price: 12.50, stock: 99, pathImage: require('../../../assets/El Lago Vostok.jpeg') },
+        { id: 5, name: 'El Misterio de las Marismas de Hockomock', price: 0.60, stock: 99, pathImage: require('../../../assets/El Misterio de las Marismas de Hockomock.jpeg') },
+        { id: 6, name: 'El Monstruo del Lago Ness', price: 13.99, stock: 99, pathImage: require('../../../assets/El Monstruo del Lago Ness.jpeg') },
+        { id: 7, name: 'El Sonido de la Tierra', price: 18.99, stock: 99, pathImage: require('../../../assets/El Sonido de la Tierra.jpeg') },
+        { id: 8, name: 'El Triángulo de Bridgewater', price: 14.99, stock: 99, pathImage: require('../../../assets/El Triángulo de Bridgewater.jpeg') },
     ];
 
     const [productsState, setProductsState] = useState(products);
@@ -43,8 +43,7 @@ export const HomeScreen = () => {
 
     const changeStockProduct = (idProduct: number, quantity: number) => {
         const updateStock = productsState.map(product => product.id === idProduct
-            ? { ...product, stock: product.stock - quantity }
-            : product);
+            ? { ...product, stock: product.stock - quantity }: product);
         setProductsState(updateStock);
 
         addProduct(idProduct, quantity);
@@ -74,7 +73,7 @@ export const HomeScreen = () => {
                 <TitleComponent title='Productos' />
                 <View style={{
                     ...styles.iconCard,
-                    paddingHorizontal: 33
+                    paddingHorizontal: 33,
                 }}>
                     <Text style={styles.textIconCar}>{car.length}</Text>
                     <Icon

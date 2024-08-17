@@ -32,8 +32,7 @@ export const InputComponent = ({ placeholder, handleSetValues, name, isPassword 
                 keyboardType='default'
                 onChangeText={(value) => handleSetValues(name, value)}
                 secureTextEntry={isPassword}
-                style={styles.inputText}
-            />
+                style={styles.inputText}/>
         </View>
     )
 }

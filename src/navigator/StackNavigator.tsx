@@ -13,10 +13,12 @@ export interface User {
 
 const Stack = createStackNavigator();
 
+
 export const StackNavigator = () => {
     const users: User[] = [
-        { id: 1, email: 'wyepez@gmail.com', password: '123456' },
-        { id: 2, email: 'willian@gmail.com', password: '654321' }
+        { id: 1, email: 'prueba', password: '010' },
+        { id: 2, email: 'wyepez@gmail.com', password: '123456' },
+        { id: 3, email: 'willian@gmail.com', password: '654321' }
     ];
 
     const [listUsers, setListUsers] = useState<User[]>(users);
